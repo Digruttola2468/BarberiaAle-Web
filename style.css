@@ -19,7 +19,7 @@ iframe {
 }
 
 .nav-menu .nav-logo {
-    width: 70px;
+    width: 80px;
 }
 .nav-menu .nav-logo img {
     border-radius: 50%;
@@ -81,18 +81,21 @@ iframe {
     height: 40vh;
     padding: 20px;
 }
-.principal-info  button{
+.principal-info  a{
     padding: 20px;
     color: #f7f7e9;
     background-color: #302f34;
     border-radius: 20px;
     border: none;
+    text-align: center;
 }
 
 /* SEGUINOS BARBER ALE */
 
 .main-container-follow {
     background-color: #302f34;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .main-container-follow h2 {
@@ -117,4 +120,28 @@ iframe {
     grid-template-columns: repeat(auto-fit  , minmax(120px,1fr));
     gap: 10px;
     padding: 5px;
+}
+
+
+/* FOOTER CONTAINER */
+
+footer {
+    background-color: #302f34;
+    padding: 10px 0px;
+}
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.footer-container img {
+    width: 200px;
+}
+.footer-container a {
+    color: #f7f7e9;
+    padding-bottom: 5px;
+}
+.ubi {
+    text-align: center;
 }
