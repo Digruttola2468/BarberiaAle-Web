@@ -64,6 +64,31 @@ iframe {
 }
 
 
+/* PAGE PRINCIPAL */
+
+iframe {
+    width: 100%;
+    height: 250px;
+}
+
+.main-container-principal {
+    height: 90vh;
+}
+.principal-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40vh;
+    padding: 20px;
+}
+.principal-info  button{
+    padding: 20px;
+    color: #f7f7e9;
+    background-color: #302f34;
+    border-radius: 20px;
+    border: none;
+}
+
 /* SEGUINOS BARBER ALE */
 
 .main-container-follow {
