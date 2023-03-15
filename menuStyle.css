@@ -1,0 +1,83 @@
+.nav-menu {
+    
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #302f34;
+    padding: 5px;
+}
+
+.nav-menu .nav-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.nav-logo .logo-iconBar {
+    display: grid;
+    place-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 7px;
+}
+.nav-menu .nav-logo a {
+    width: 80px;
+    height: 80px;   
+}
+.nav-menu .nav-logo a img {
+    border-radius: 50%;
+}
+
+.items-barberia {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #302f34;
+    width: 100%;
+
+    left: 0px;
+    transform: translateY(-200%);
+    transition: transform 0.7s;
+}
+.items-barberia li {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+}
+.items-barberia li a{
+    color: #fff;
+}
+.items-barberia li a i{
+    padding: 5px;
+}
+
+.fa-bars {
+    color: white;
+}
+.fa-xmark {
+    color: white;
+}
+
+.showMenu{
+    transform: translateY(90px);
+}
+
+
+.container-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.iconUser-Container {
+    display: grid;
+    place-content: center;
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #f7f7e9;
+    border-radius: 50%;
+}
