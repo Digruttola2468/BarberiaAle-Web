@@ -122,6 +122,41 @@ iframe {
     padding: 5px;
 }
 
+/* TURNOS */
+.main-container-turnos {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.main-container-turnos input{
+    border: none;
+    padding: 7px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.main-container-turnos button {
+    border: none;
+    background-color: #302f34;
+    color: #f7f7e9;
+    padding: 7px;
+    border-radius: 10px;
+    
+}
+
+.select {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 90px);
+}
+
+.select button {
+    border: 0px;
+    padding: 5px;
+    background-color: #302f34;
+    color: #f7f7e9;
+    margin: 5px;
+    border-radius: 10px;
+}
 
 /* FOOTER CONTAINER */
 
