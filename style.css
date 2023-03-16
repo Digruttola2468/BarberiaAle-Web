@@ -84,12 +84,12 @@ iframe {
     
 }
 
-.select {
+.selectTurnosButton {
     display: grid;
     grid-template-columns: repeat(auto-fit, 90px);
 }
 
-.select button {
+.selectTurnosButton button {
     border: 0px;
     padding: 5px;
     background-color: #302f34;
