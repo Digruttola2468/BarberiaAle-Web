@@ -6,11 +6,7 @@ export const listTurnos = [
         turno: {
           fecha: "2023-03-17",
           horario: "17:00",
-        },
-        turno: {
-          fecha: "2023-03-18",
-          horario: "17:00",
-        },
+        }
       },
       email: "ivandigruttola@gmail.com",
       phone: "341 231 4350",
@@ -22,11 +18,7 @@ export const listTurnos = [
         turno: {
           fecha: "2023-03-17",
           horario: "17:30",
-        },
-        turno: {
-          fecha: "2023-03-18",
-          horario: "17:30",
-        },
+        }
       },
       email: "marcosCañete@gmail.com",
       phone: "341 231 4350",
@@ -38,11 +30,7 @@ export const listTurnos = [
         turno:{
           fecha: "2023-03-17",
           horario: "18:00",
-        },
-        turno:{
-          fecha: "2023-03-18",
-          horario: "18:00",
-        },
+        }
       },
       email: "matiCalderon@gmail.com",
       phone: "341 231 4350",
@@ -54,11 +42,7 @@ export const listTurnos = [
         turno:{
           fecha: "2023-03-17",
           horario: "18:30",
-        },
-        turno:{
-          fecha: "2023-03-18",
-          horario: "18:30",
-        },
+        }
       },
       email: "julianCejas@gmail.com",
       phone: "341 231 4350",
@@ -70,11 +54,7 @@ export const listTurnos = [
         turno:{
           fecha: "2023-03-17",
           horario: "19:00",
-        },
-        turno:{
-          fecha: "2023-03-18",
-          horario: "19:00",
-        },
+        }
       },
       email: "pabloCardozo@gmail.com",
       phone: "341 231 4350",
@@ -86,11 +66,7 @@ export const listTurnos = [
         turno: {
           fecha: "2023-03-17",
           horario: "19:30",
-        },
-        turno: {
-          fecha: "2023-03-18",
-          horario: "19:30",
-        },
+        }
       },
       email: "facundoGonzales@gmail.com",
       phone: "341 231 4350",

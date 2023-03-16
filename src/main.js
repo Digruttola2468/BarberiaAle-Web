@@ -46,8 +46,21 @@ inputDate.addEventListener("change", (evt) => {
       diaCierra = "";
   }
 
+  const array = getHorarioDay(diaAbre, diaCierra);
+  listTurnos.map(turno => {
+    if(turno.listTurnos.turno.fecha === evt.target.value){
+      let obtenerTurno = turno.listTurnos.turno.horario;
+      let obtenerIndex = array.indexOf(obtenerTurno);
+      delete(array[obtenerIndex])
+    }
+    
+  })
+
+  // const horaActual = "16:00";
+  // array.splice(array.indexOf(horaActual),9)
+  // console.log(array);
+
   if(diaAbre != "" && diaCierra != "") {
-    const array = getHorarioDay(diaAbre, diaCierra);
     array.map(elemen => {
       const createButton = document.createElement("button");
       createButton.innerHTML = elemen;
@@ -55,7 +68,7 @@ inputDate.addEventListener("change", (evt) => {
     });
   }else {
     const createParrafo = document.createElement("p");
-    createParrafo.innerHTML = "NO ABRIMOS";
+    createParrafo.innerHTML = "NO HAY TURNOS DISPONIBLES";
     selectTurnosButton.appendChild(createParrafo);
   }
     
@@ -65,3 +78,6 @@ inputDate.addEventListener("change", (evt) => {
 function getHorarioDay(abre, cierra) {
   return listHorarios.slice(listHorarios.indexOf(abre), listHorarios.indexOf(cierra) + 1);
 }
+
+
+
