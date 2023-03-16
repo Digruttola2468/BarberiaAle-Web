@@ -80,4 +80,10 @@ function getHorarioDay(abre, cierra) {
 }
 
 
-
+const fechaActual = new Date();
+let dia = fechaActual.getDate();
+let mounth = fechaActual.getMonth() + 1;
+let year = fechaActual.getFullYear();
+if(mounth < 10) mounth = `0${mounth}`
+let fechaActualString = `${year}-${mounth}-${dia}`
+inputDate.setAttribute("min",fechaActualString);
