@@ -1,0 +1,22 @@
+/* FOOTER CONTAINER */
+
+footer {
+    background-color: #302f34;
+    padding: 10px 0px;
+}
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.footer-container img {
+    width: 200px;
+}
+.footer-container a {
+    color: #f7f7e9;
+    padding-bottom: 5px;
+}
+.ubi {
+    text-align: center;
+}
