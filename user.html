@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User</title>
+    
+    <link rel="icon" type="image/x-icon" href="assets/image/icon.ico" />
 
     <!-- FONTAWESOME -->
     <link
@@ -63,23 +65,25 @@
     </nav>
 
     <main>
-      <section>
-        <h1>Ivan Di Gruttola</h1>
-        <p>Email: ivandigruttola@gmail.com</p>
-        <p>Phone: 341 432 1234</p>
-      </section>
-      <section>
-        <h2>Historial De turnos</h2>
+      <section class="main-container-user">
         <div>
-          <div>
+          <h1><i class="fa-solid fa-user"></i> Ivan Di Gruttola</h1>
+          <p><i class="fa-solid fa-envelope"></i> ivandigruttola@gmail.com</p>
+          <p><i class="fa-solid fa-phone"></i> 341 432 1234</p>
+        </div>
+      </section>
+      <section class="main-container-hisorialTurn">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Historial De turnos</h2>
+        <div class="container-historialTurn">
+          <div class="item-hisotiralTurn">
             <h3>Turno</h3>
-            <div>
+            <div class="infoTurno-item">
               <p>Fecha: 2023-03-17</p>
               <p>Horario: 17:30</p>
             </div>
-            <div>
-              <button>Modificar Turno</button>
-              <button>Cancelar Turno</button>
+            <div class="buttons-item">
+              <button id="btnModificarTurno">Modificar</button>
+              <button id="btnDelete">Cancelar</button>
             </div>
           </div>
         </div>
