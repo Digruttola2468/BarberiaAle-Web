@@ -7,6 +7,7 @@ priceCorte.innerHTML = ` ${infoPeluquero.precio}`;
 const inputDate = document.querySelector("#inputDate");
 inputDate.setAttribute("min", getStringDate());
 const selectTurnosButton = document.querySelector(".selectTurnosButton");
+
 inputDate.addEventListener("change", (evt) => {
   selectTurnosButton.innerHTML = "";
 
@@ -51,16 +52,35 @@ inputDate.addEventListener("change", (evt) => {
 
     const array = getHorarioDay(diaAbre, diaCierra);
     listTurnos.map((turno) => {
-      if (turno.listTurnos.turno.fecha === evt.target.value) {
-        let obtenerTurno = turno.listTurnos.turno.horario;
+      if (turno.turno.fecha === evt.target.value) {
+        let obtenerTurno = turno.turno.horario;
         let obtenerIndex = array.indexOf(obtenerTurno);
         delete array[obtenerIndex];
       }
     });
 
-    // const horaActual = "16:00";
-    // array.splice(array.indexOf(horaActual),9)
-    // console.log(array);
+    if (compareDates(getStringDate(), getInputDate) == null) {
+      let horaActual = new Date().getHours().toString();
+      let minutosActual = new Date().getMinutes().toString();
+      if (minutosActual > 0 && minutosActual < 30) {
+        minutosActual = "30";
+      } else if (minutosActual > 30) {
+        minutosActual = "00";
+        horaActual++;
+      }
+      const timeActual = `${horaActual}:${minutosActual}`;
+      // console.log(timeActual);
+      // array.splice(0, array.indexOf(timeActual));
+      // console.log(array);
+      const d1 = new Date(`${getStringDate()}T${timeActual}`);
+      array.map((time,index) => {
+        const d2 = new Date(`${getStringDate()}T${time}`);
+        if(d1 > d2) {
+          delete array[index];
+        }
+      })
+      console.log("NOSE",array);
+    }
 
     if (diaAbre != "" && diaCierra != "") {
       array.map((elemen) => {
@@ -96,14 +116,7 @@ const compareDates = (d1, d2) => {
   let date1 = new Date(d1).getTime();
   let date2 = new Date(d2).getTime();
 
-  if (date1 < date2) {
-    console.log(`${d1} is less than ${d2}`);
-    return false;
-  } else if (date1 > date2) {
-    console.log(`${d1} is greater than ${d2}`);
-    return true;
-  } else {
-    console.log(`Both dates are equal`);
-    return null;
-  }
+  if (date1 < date2) return false;
+  else if (date1 > date2) return true;
+  else return null;
 };
