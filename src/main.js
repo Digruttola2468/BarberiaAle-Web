@@ -8,9 +8,11 @@ const inputDate = document.querySelector("#inputDate");
 inputDate.setAttribute("min", getStringDate());
 const selectTurnosButton = document.querySelector(".selectTurnosButton");
 
+const descripcion = document.createElement("p");
+let valorButon = "";
 inputDate.addEventListener("change", (evt) => {
   selectTurnosButton.innerHTML = "";
-
+  valorButon = "";
   const getInputDate = evt.target.value;
   if (compareDates(getStringDate(), getInputDate) != true) {
     const date = new Date(getInputDate);
@@ -73,19 +75,23 @@ inputDate.addEventListener("change", (evt) => {
       // array.splice(0, array.indexOf(timeActual));
       // console.log(array);
       const d1 = new Date(`${getStringDate()}T${timeActual}`);
-      array.map((time,index) => {
+      array.map((time, index) => {
         const d2 = new Date(`${getStringDate()}T${time}`);
-        if(d1 > d2) {
+        if (d1 > d2) {
           delete array[index];
         }
-      })
-      console.log("NOSE",array);
+      });
     }
 
     if (diaAbre != "" && diaCierra != "") {
       array.map((elemen) => {
         const createButton = document.createElement("button");
         createButton.innerHTML = elemen;
+        createButton.classList.add("btnHorario");
+        createButton.addEventListener("click", (e) => {
+          valorButon = elemen;
+          descripcion.innerHTML = `Turno para el ${getInputDate} a las ${elemen}`;
+        });
         selectTurnosButton.appendChild(createButton);
       });
     } else {
@@ -93,8 +99,18 @@ inputDate.addEventListener("change", (evt) => {
       createParrafo.innerHTML = "NO HAY TURNOS DISPONIBLES";
       selectTurnosButton.appendChild(createParrafo);
     }
+    const containerTurnos = document.querySelector(".main-container-turnos");
+    descripcion.innerHTML = `Turno para el ${getInputDate} a las ${valorButon}`;
+    containerTurnos.appendChild(descripcion);
   }
 });
+
+const btnConfirmar = document.querySelector("#btnConfirmar");
+btnConfirmar.addEventListener("click", (e) => {
+  console.log(inputDate.value);
+  console.log(valorButon);
+});
+console.log(valorButon);
 
 function getHorarioDay(abre, cierra) {
   return listHorarios.slice(

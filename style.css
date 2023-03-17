@@ -89,11 +89,16 @@ iframe {
     grid-template-columns: repeat(auto-fit, 90px);
 }
 
-.selectTurnosButton button {
+.selectTurnosButton .btnHorario {
     border: 0px;
     padding: 5px;
     background-color: #302f34;
     color: #f7f7e9;
     margin: 5px;
     border-radius: 10px;
+}
+
+.activarButton {
+    background-color: #f7f7e9;
+    color: #302f34;
 }
