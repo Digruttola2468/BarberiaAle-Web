@@ -1,8 +1,11 @@
+import { showMessage } from "./showMessage.js";
 import { listTurnos } from "./data/turnos.js";
 import { infoPeluquero, listHorarios } from "./data/disponibilidadPeluquero.js";
 
 const priceCorte = document.querySelector("#priceCorte");
 priceCorte.innerHTML = ` ${infoPeluquero.precio}`;
+
+const containerTurnos = document.querySelector(".main-container-turnos");
 
 const inputDate = document.querySelector("#inputDate");
 inputDate.setAttribute("min", getStringDate());
@@ -71,9 +74,7 @@ inputDate.addEventListener("change", (evt) => {
         horaActual++;
       }
       const timeActual = `${horaActual}:${minutosActual}`;
-      // console.log(timeActual);
-      // array.splice(0, array.indexOf(timeActual));
-      // console.log(array);
+
       const d1 = new Date(`${getStringDate()}T${timeActual}`);
       array.map((time, index) => {
         const d2 = new Date(`${getStringDate()}T${time}`);
@@ -99,7 +100,6 @@ inputDate.addEventListener("change", (evt) => {
       createParrafo.innerHTML = "NO HAY TURNOS DISPONIBLES";
       selectTurnosButton.appendChild(createParrafo);
     }
-    const containerTurnos = document.querySelector(".main-container-turnos");
     descripcion.innerHTML = `Turno para el ${getInputDate} a las ${valorButon}`;
     containerTurnos.appendChild(descripcion);
   }
@@ -109,6 +109,27 @@ const btnConfirmar = document.querySelector("#btnConfirmar");
 btnConfirmar.addEventListener("click", (e) => {
   console.log(inputDate.value);
   console.log(valorButon);
+  if (inputDate.value != "" && valorButon != ""){
+    if (confirm(`El turno que elegiste es el ${inputDate.value} a las ${valorButon}, seleccione aceptar para confirmar`)) {
+      
+
+      listTurnos.map(turno => {
+        if(turno.nombre == "Ivan DI Gruttola"){
+          turno.turno.fecha = inputDate.value;
+          turno.turno.horario = valorButon;
+        }
+      })
+      console.log(listTurnos);
+      showMessage("Guardado","success");
+
+      valorButon = "";
+      inputDate.value = "";
+      selectTurnosButton.innerHTML = "";
+      descripcion.innerHTML = "";
+    } else {
+      showMessage("Cancelado","error")
+    }
+  }
 });
 console.log(valorButon);
 
