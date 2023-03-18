@@ -65,7 +65,10 @@ inputDate.addEventListener("change", (evt) => {
         diaCierra = "";
     }
 
+    // Obtenemos el Horario del dia seleccionado 
     const array = getHorarioDay(diaAbre, diaCierra);
+    
+    //Recorremos el array para eliminar los turnos guardados en la nube
     listTurnos.map((turno) => {
       if (turno.turno.fecha === evt.target.value) {
         let obtenerTurno = turno.turno.horario;
@@ -74,10 +77,12 @@ inputDate.addEventListener("change", (evt) => {
       }
     });
 
+    //Comparamos si el dia seleccionado es igual que la fecha actual 
     if (compareDates(getStringDate(), getInputDate) == null) {
       const d1 = new Date(
         `${getStringDate()}T${getStringFechaHoraFormateado()}`
       );
+      //recorremos el array para eliminar los turnos obsoletos ya que pasaron la hora actual
       array.map((time, index) => {
         const d2 = new Date(`${getStringDate()}T${time}`);
         if (d1 > d2) {
@@ -86,7 +91,9 @@ inputDate.addEventListener("change", (evt) => {
       });
     }
 
+    
     if (diaAbre != "" && diaCierra != "") {
+      //Recorremos el array terminado para colocar los botones
       array.map((elemen) => {
         const createButton = document.createElement("button");
         createButton.innerHTML = elemen;
@@ -98,6 +105,7 @@ inputDate.addEventListener("change", (evt) => {
       });
     } else showMessage("No Abrimos", "error");
 
+    //Mostramos en pantalla el turno seleccionado
     descripcion.innerHTML = `Turno para el ${getInputDate} a las ${valorButon}`;
     containerTurnos.appendChild(descripcion);
   }
