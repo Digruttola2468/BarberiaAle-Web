@@ -1,0 +1,47 @@
+.main-container-signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.main-container-signUp form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.main-container-signUp form h2{
+    text-transform: uppercase;
+}
+
+.main-container-signUp input {
+    padding: 7px;
+    border: none;
+    background-color: #302f34;
+    border-radius: 5px;
+    margin-top: 8px;
+    color: #f7f7e9;
+}
+
+.main-container-signUp #btnRegistrarme {
+    padding: 15px;
+    background-color: #f7f7e9;
+    color: #302f34;
+    border: 1px solid #302f34;
+    margin-top: 16px;
+    border-radius: 10px;
+}
+
+#btnSignInGoole {
+    background-color: #302f34;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 20px;
+    color: #f7f7e9;
+    border-radius: 10px;
+}
