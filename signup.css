@@ -27,7 +27,7 @@
     color: #f7f7e9;
 }
 
-.main-container-signUp #btnRegistrarme {
+.main-container-signUp #btnRegistrarme,#btnIniciarSesion {
     padding: 15px;
     background-color: #f7f7e9;
     color: #302f34;
