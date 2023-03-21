@@ -6,7 +6,3 @@ iconMenu.addEventListener("click", (e) => {
   divIconMenu.classList.toggle("showMenu");
 });
 
-const clickUserIcon = document.querySelector(".iconUser-Container");
-clickUserIcon.addEventListener("click", (e) => {
-  window.location.href = "./user.html";
-});

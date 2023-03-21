@@ -29,6 +29,15 @@ const spanNombreMenu = document.querySelector(".spanNombreMenu");
 
 const descripcion = document.createElement("p");
 
+const clickUserIcon = document.querySelector(".iconUser-Container");
+clickUserIcon.addEventListener("click", (e) => {
+  if (auth.currentUser != null) {
+    if (auth.currentUser.emailVerified) {
+      window.location.href = "./user.html";
+    }else showMessage("Necesitas Verificar el Email");
+  }else showMessage("Necesitas Registrarte");
+});
+
 inputDate.setAttribute("min", getStringDate());
 
 let valorButon = "";
@@ -124,7 +133,7 @@ inputDate.addEventListener("change", async (evt) => {
         delete array[obtenerIndex];
       }
     });*/
-    
+
     const q = query(
       collection(db, "usuarios")
     );

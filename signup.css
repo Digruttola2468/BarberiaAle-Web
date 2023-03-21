@@ -36,6 +36,10 @@
     border-radius: 10px;
 }
 
+#formRegistrarse p a {
+    color: rgb(56, 56, 255);
+}
+
 #btnSignInGoole {
     background-color: #302f34;
     border: none;
