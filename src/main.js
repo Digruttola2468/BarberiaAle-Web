@@ -13,6 +13,7 @@ import {
   doc,
   setDoc,
   getDoc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
 const priceCorte = document.querySelector("#priceCorte");
@@ -35,7 +36,7 @@ onAuthStateChanged(auth, async (user) => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        showMessage(`Bienvenido ${user.displayName}`,"success")
+        showMessage(`Bienvenido ${user.displayName}`, "success");
       } else {
         await setDoc(docRef, {
           nombre: `${user.displayName}`,
@@ -43,8 +44,8 @@ onAuthStateChanged(auth, async (user) => {
           phone: `${user.phoneNumber}`,
           turno: {
             fecha: "",
-            hora: ""
-          }
+            hora: "",
+          },
         });
       }
     }
@@ -142,17 +143,18 @@ inputDate.addEventListener("change", (evt) => {
   }
 });
 
-btnConfirmar.addEventListener("click", (e) => {
+btnConfirmar.addEventListener("click", async (e) => {
   if (inputDate.value != "" && valorButon != "") {
     if (
       confirm(
         `El turno que elegiste es el ${inputDate.value} a las ${valorButon}, seleccione aceptar para confirmar`
       )
     ) {
-      listTurnos.map((turno) => {
-        if (turno.nombre == "Ivan DI Gruttola") {
-          turno.turno.fecha = inputDate.value;
-          turno.turno.horario = valorButon;
+      const docRef = doc(db, "usuarios", `${auth.currentUser.uid}`);
+      await updateDoc(docRef, {
+        turno: {
+          fecha: `${inputDate.value}`,
+          hora: `${valorButon}`
         }
       });
       showMessage("Guardado", "success");
