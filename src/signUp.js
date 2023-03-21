@@ -1,4 +1,4 @@
-import { auth } from "./firebase/mainFirebase.js";
+import { auth,db } from "./firebase/mainFirebase.js";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -9,6 +9,7 @@ import {
   signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { showMessage } from "./controller/showMessage.js";
+import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
 const btnRegistrarme = document.querySelector("#btnRegistrarme");
 const formRegistrarse = document.querySelector("#formRegistrarse");
@@ -47,7 +48,6 @@ async function createUser(email, password) {
       //window.open("./sendEmailVerification.html");
     });
 
-    showMessage("Se creo Correctamente", "success");
     clearCampus();
   } catch (error) {
     console.log(error.message);

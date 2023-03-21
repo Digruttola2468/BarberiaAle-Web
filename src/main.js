@@ -7,8 +7,13 @@ import {
   getStringDate,
   getStringFechaHoraFormateado,
 } from "./controller/dateFechaHora.js";
-import { auth } from "./firebase/mainFirebase.js";
-import { onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import { auth, db } from "./firebase/mainFirebase.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import {
+  doc,
+  setDoc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
 const priceCorte = document.querySelector("#priceCorte");
 const containerTurnos = document.querySelector(".main-container-turnos");
@@ -23,11 +28,25 @@ inputDate.setAttribute("min", getStringDate());
 
 let valorButon = "";
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
-    if(user.emailVerified){
-      showMessage(`Bienvenido: ${user.displayName}`, "success");
-      console.log(user);
+    if (user.emailVerified) {
+      const docRef = doc(db, "usuarios", `${user.uid}`);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        showMessage(`Bienvenido ${user.displayName}`,"success")
+      } else {
+        await setDoc(docRef, {
+          nombre: `${user.displayName}`,
+          email: `${user.email}`,
+          phone: `${user.phoneNumber}`,
+          turno: {
+            fecha: "",
+            hora: ""
+          }
+        });
+      }
     }
   } else {
     // User is signed out
@@ -78,9 +97,9 @@ inputDate.addEventListener("change", (evt) => {
         diaCierra = "";
     }
 
-    // Obtenemos el Horario del dia seleccionado 
+    // Obtenemos el Horario del dia seleccionado
     const array = getHorarioDay(diaAbre, diaCierra);
-    
+
     //Recorremos el array para eliminar los turnos guardados en la nube
     listTurnos.map((turno) => {
       if (turno.turno.fecha === evt.target.value) {
@@ -90,7 +109,7 @@ inputDate.addEventListener("change", (evt) => {
       }
     });
 
-    //Comparamos si el dia seleccionado es igual que la fecha actual 
+    //Comparamos si el dia seleccionado es igual que la fecha actual
     if (compareDates(getStringDate(), getInputDate) == null) {
       const d1 = new Date(
         `${getStringDate()}T${getStringFechaHoraFormateado()}`
@@ -104,7 +123,6 @@ inputDate.addEventListener("change", (evt) => {
       });
     }
 
-    
     if (diaAbre != "" && diaCierra != "") {
       //Recorremos el array terminado para colocar los botones
       array.map((elemen) => {
@@ -140,7 +158,6 @@ btnConfirmar.addEventListener("click", (e) => {
       showMessage("Guardado", "success");
 
       vaciarCampos();
-
     } else showMessage("Cancelado", "error");
   }
 });
