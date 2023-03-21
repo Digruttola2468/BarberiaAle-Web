@@ -14,6 +14,10 @@ import {
   setDoc,
   getDoc,
   updateDoc,
+  query,
+  where,
+  getDocs,
+  collection,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
 const priceCorte = document.querySelector("#priceCorte");
@@ -61,11 +65,11 @@ onAuthStateChanged(auth, async (user) => {
     }
   } else {
     // User is signed out
-    spanNombreMenu.innerHTML = `<a href="./signup.html">Registrarse</a>`
+    spanNombreMenu.innerHTML = `<a href="./signup.html">Registrarse</a>`;
   }
 });
 
-inputDate.addEventListener("change", (evt) => {
+inputDate.addEventListener("change", async (evt) => {
   selectTurnosButton.innerHTML = "";
   valorButon = "";
 
@@ -113,10 +117,22 @@ inputDate.addEventListener("change", (evt) => {
     const array = getHorarioDay(diaAbre, diaCierra);
 
     //Recorremos el array para eliminar los turnos guardados en la nube
-    listTurnos.map((turno) => {
+    /*listTurnos.map((turno) => {
       if (turno.turno.fecha === evt.target.value) {
         let obtenerTurno = turno.turno.horario;
         let obtenerIndex = array.indexOf(obtenerTurno);
+        delete array[obtenerIndex];
+      }
+    });*/
+    
+    const q = query(
+      collection(db, "usuarios")
+    );
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      if(doc.data().turno.fecha === evt.target.value){
+        let obtenerIndex = array.indexOf(doc.data().turno.hora);
         delete array[obtenerIndex];
       }
     });
