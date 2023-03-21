@@ -24,7 +24,14 @@ const btnConfirmar = document.querySelector("#btnConfirmar");
 
 const descripcion = document.createElement("p");
 
-priceCorte.innerHTML = ` ${infoPeluquero.precio}`;
+const docRef = doc(db, "peluqueros", "3D8ObZYUm9amOMibekKX");
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  priceCorte.innerHTML = `$ ${docSnap.data().precio}`;
+} else {
+}
+
 inputDate.setAttribute("min", getStringDate());
 
 let valorButon = "";
