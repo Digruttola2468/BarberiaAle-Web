@@ -154,8 +154,8 @@ btnConfirmar.addEventListener("click", async (e) => {
       await updateDoc(docRef, {
         turno: {
           fecha: `${inputDate.value}`,
-          hora: `${valorButon}`
-        }
+          hora: `${valorButon}`,
+        },
       });
       showMessage("Guardado", "success");
 
