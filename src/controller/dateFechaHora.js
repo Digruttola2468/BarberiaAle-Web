@@ -1,4 +1,4 @@
-import { listHorarios } from "./data/disponibilidadPeluquero.js";
+import { listHorarios } from "../data/disponibilidadPeluquero.js";
 
 export function getHorarioDay(abre, cierra) {
   return listHorarios.slice(

@@ -1,4 +1,4 @@
-import { showMessage } from "./showMessage.js";
+import { showMessage } from "./controller/showMessage.js";
 import { listTurnos } from "./data/turnos.js";
 import { infoPeluquero } from "./data/disponibilidadPeluquero.js";
 import {
@@ -6,7 +6,9 @@ import {
   getHorarioDay,
   getStringDate,
   getStringFechaHoraFormateado,
-} from "./dateFechaHora.js";
+} from "./controller/dateFechaHora.js";
+import { auth } from "./firebase/mainFirebase.js";
+import { onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 
 const priceCorte = document.querySelector("#priceCorte");
 const containerTurnos = document.querySelector(".main-container-turnos");
@@ -20,6 +22,17 @@ priceCorte.innerHTML = ` ${infoPeluquero.precio}`;
 inputDate.setAttribute("min", getStringDate());
 
 let valorButon = "";
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    if(user.emailVerified){
+      showMessage(`Bienvenido: ${user.displayName}`, "success");
+      console.log(user);
+    }
+  } else {
+    // User is signed out
+  }
+});
 
 inputDate.addEventListener("change", (evt) => {
   selectTurnosButton.innerHTML = "";

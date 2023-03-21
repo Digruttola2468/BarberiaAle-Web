@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="./footer.css">
     <link rel="stylesheet" href="./signup.css">
 
+    <script src="./src/signIn.js" type="module"></script> 
 </head>
 <body>
     
@@ -71,11 +72,10 @@
 
       <main>
         <section class="main-container-signUp">
-            <form>
+            <form id="formIniciarSesion">
                 <h2>Iniciar Sesion</h2>
-                <input type="email" placeholder="Email">
-                <input type="password" name="" id="" placeholder="********">
-                <input type="password" name="" id="" placeholder="********">
+                <input type="email" placeholder="Email" id="email">
+                <input type="password" placeholder="********" id="password">
                 <button id="btnIniciarSesion">Iniciar Sesion</button>
                 <p>Si no tenes una cuenta, Registrarse <a href="./signup.html">aqui</a></p>
             </form>
@@ -94,7 +94,8 @@
         </section>
       </footer>
 
-      <script src="./src/menu.js"></script>    
+      <script src="./src/menu.js"></script>   
+      
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>

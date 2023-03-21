@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="./footer.css">
     <link rel="stylesheet" href="./signup.css">
 
+    <script src="./src/signUp.js" type="module"></script>  
 </head>
 <body>
     
@@ -71,13 +72,13 @@
 
       <main>
         <section class="main-container-signUp">
-            <form>
+            <form id="formRegistrarse">
                 <h2>Registrarse</h2>
-                <input type="text" placeholder="Nombre">
-                <input type="text" placeholder="Apellido">
-                <input type="email" placeholder="Email">
-                <input type="password" name="" id="" placeholder="********">
-                <input type="password" name="" id="" placeholder="********">
+                <input type="text" placeholder="Nombre" id="nombre">
+                <input type="text" placeholder="Apellido" id="apellido">
+                <input type="email" placeholder="Email" id="email">
+                <input type="password" placeholder="********" id="password">
+                <input type="password" placeholder="********" id="rptPassword">
                 <button id="btnRegistrarme">Registrarme</button>
                 <p>Si ya tenes una cuenta, Inicia Sesion <a href="./signIn.html">aqui</a></p>
             </form>
@@ -96,7 +97,10 @@
         </section>
       </footer>
 
-      <script src="./src/menu.js"></script>    
+
+     
+
+      <script src="./src/menu.js"></script>  
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>
