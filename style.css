@@ -8,6 +8,13 @@ iframe {
 .main-container-principal {
     height: 90vh;
 }
+.ubiDescripcion {
+    margin: 0;
+    text-align: center;
+    font-size: 14px;
+    color: #858585;
+}
+
 .principal-info {
     display: flex;
     flex-direction: column;
