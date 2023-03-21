@@ -21,16 +21,9 @@ const containerTurnos = document.querySelector(".main-container-turnos");
 const inputDate = document.querySelector("#inputDate");
 const selectTurnosButton = document.querySelector(".selectTurnosButton");
 const btnConfirmar = document.querySelector("#btnConfirmar");
+const spanNombreMenu = document.querySelector(".spanNombreMenu");
 
 const descripcion = document.createElement("p");
-
-const docRef = doc(db, "peluqueros", "3D8ObZYUm9amOMibekKX");
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-  priceCorte.innerHTML = `$ ${docSnap.data().precio}`;
-} else {
-}
 
 inputDate.setAttribute("min", getStringDate());
 
@@ -39,10 +32,20 @@ let valorButon = "";
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     if (user.emailVerified) {
+      const docRefPeluquero = doc(db, "peluqueros", "3D8ObZYUm9amOMibekKX");
+      const docSnapPeluquero = await getDoc(docRefPeluquero);
+
+      if (docSnapPeluquero.exists()) {
+        priceCorte.innerHTML = `Precio corte: $ ${
+          docSnapPeluquero.data().precio
+        }`;
+      }
+
       const docRef = doc(db, "usuarios", `${user.uid}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
+        spanNombreMenu.innerHTML = user.displayName;
         showMessage(`Bienvenido ${user.displayName}`, "success");
       } else {
         await setDoc(docRef, {
@@ -58,6 +61,7 @@ onAuthStateChanged(auth, async (user) => {
     }
   } else {
     // User is signed out
+    spanNombreMenu.innerHTML = `<a href="./signup.html">Registrarse</a>`
   }
 });
 
@@ -151,24 +155,28 @@ inputDate.addEventListener("change", (evt) => {
 });
 
 btnConfirmar.addEventListener("click", async (e) => {
-  if (inputDate.value != "" && valorButon != "") {
-    if (
-      confirm(
-        `El turno que elegiste es el ${inputDate.value} a las ${valorButon}, seleccione aceptar para confirmar`
-      )
-    ) {
-      const docRef = doc(db, "usuarios", `${auth.currentUser.uid}`);
-      await updateDoc(docRef, {
-        turno: {
-          fecha: `${inputDate.value}`,
-          hora: `${valorButon}`,
-        },
-      });
-      showMessage("Guardado", "success");
+  if (auth.currentUser != null) {
+    if (auth.currentUser.emailVerified) {
+      if (inputDate.value != "" && valorButon != "") {
+        if (
+          confirm(
+            `El turno que elegiste es el ${inputDate.value} a las ${valorButon}, seleccione aceptar para confirmar`
+          )
+        ) {
+          const docRef = doc(db, "usuarios", `${auth.currentUser.uid}`);
+          await updateDoc(docRef, {
+            turno: {
+              fecha: `${inputDate.value}`,
+              hora: `${valorButon}`,
+            },
+          });
+          showMessage("Guardado", "success");
 
-      vaciarCampos();
-    } else showMessage("Cancelado", "error");
-  }
+          vaciarCampos();
+        } else showMessage("Cancelado", "error");
+      }
+    } else showMessage("Necesitas Verificar el Email");
+  } else showMessage("Necesitas Registrarte");
 });
 
 const vaciarCampos = () => {
