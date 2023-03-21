@@ -18,11 +18,11 @@ onAuthStateChanged(auth, async (user) => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        NombreUserH1.innerHTML = user.displayName;
-        EmailUserP.innerHTML = user.email;
-        PhoneUserP.innerHTML = user.phoneNumber;
-        FechaTurnoP.innerHTML = docSnap.data().turno.fecha;
-        HorarioTurnoP.innerHTML = docSnap.data().turno.hora;
+        NombreUserH1.innerHTML = `<i class="fa-solid fa-user"></i> ${user.displayName}`;
+        EmailUserP.innerHTML = `<i class="fa-solid fa-envelope"></i> ${user.email}`;
+        PhoneUserP.innerHTML = `<i class="fa-solid fa-phone"></i>${user.phoneNumber}`;
+        FechaTurnoP.innerHTML = `Fecha: ${docSnap.data().turno.fecha}`;
+        HorarioTurnoP.innerHTML = `Horario: ${docSnap.data().turno.hora}`;
       }
     }
   }
