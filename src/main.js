@@ -31,7 +31,11 @@ const descripcion = document.createElement("p");
 const clickUserIcon = document.querySelector(".iconUser-Container");
 clickUserIcon.addEventListener("click", (e) => {
   if (auth.currentUser != null) {
-    if (auth.currentUser.emailVerified) {
+    if(auth.currentUser.email === "barberiaale@gmail.com"){
+      window.location.href = "./peluquero.html";
+    }
+
+    else if (auth.currentUser.emailVerified) {
       window.location.href = "./user.html";
     }else showMessage("Necesitas Verificar el Email");
   }else showMessage("Necesitas Registrarte");
