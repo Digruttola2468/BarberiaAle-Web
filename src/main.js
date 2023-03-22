@@ -1,5 +1,4 @@
 import { showMessage } from "./controller/showMessage.js";
-import { listTurnos } from "./data/turnos.js";
 import { infoPeluquero } from "./data/disponibilidadPeluquero.js";
 import {
   compareDates,

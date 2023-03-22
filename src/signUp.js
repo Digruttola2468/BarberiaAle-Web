@@ -39,7 +39,7 @@ async function createUser(email, password) {
     updateProfile(auth.currentUser, {
       displayName: `${nombreString} ${apellidoString}`,
       photoURL:
-        "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png",
+        `https://robohash.org/${nombreString}`,
     }).then();
 
     sendEmailVerification(auth.currentUser).then(() => {
@@ -73,17 +73,9 @@ btnSignInGoole.addEventListener("click", async (e) => {
   const provider = new GoogleAuthProvider();
   try {
     const credentials = await signInWithPopup(auth, provider);
-    console.log(credentials);
-    console.log("google sign in");
 
-    // Close the login modal
-    const modalInstance = bootstrap.Modal.getInstance(
-      googleButton.closest(".modal")
-    );
-    modalInstance.hide();
-
-    // show welcome message
-    showMessage("Welcome " + credentials.user.displayName);
+    showMessage("Welcome " + credentials.user.displayName,"success");
+    window.location.href = "./index.html";
   } catch (error) {
     console.log(error);
   }
