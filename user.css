@@ -2,28 +2,46 @@ main {
     height: 90vh;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .main-container-user div{
-    background-color: #302f34;
     margin: 10px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #f7f7e9;
+    color: #302f34;
 }
 
-.main-container-hisorialTurn h2{
-    text-align: center;
+#NombreUserH1 {
+    margin: 0;
+}
+#EmailUserP,#PhoneUserP {
+    margin: 0px;
+    margin-top: 8px;
+    color: #858585;
+}
+
+.main-container-hisorialTurn h3{
+    margin: 0;
+    grid-column: 1 / 3;
 }
 
 .item-hisotiralTurn {
-    background-color: #302f34;
     margin: 10px;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 170px 150px;
+    grid-template-rows: 30px 30px 30px;
     align-items: center;
-    color: #f7f7e9;
+    justify-items: center;
+    place-content: center;
+    gap: 7px;
+    color: #302f34;
     padding: 7px;
 }
 
@@ -33,4 +51,13 @@ main {
     padding: 7px;
     border-radius: 10px;
     margin-right: 8px;
+}
+
+#btnLoginOut {
+    background-color: #302f34;
+    color: #f7f7e9;
+    border: none;
+    padding: 10px 0px;
+    margin: 0px 10px;
+    border-radius: 10px;
 }
