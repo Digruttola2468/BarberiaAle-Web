@@ -1,3 +1,47 @@
 main {
-    height: 90vh;
+    min-height: 90vh;
+}
+
+.main-container-infoPeluquero {
+    margin-top: 21px;
+}
+
+.main-container-infoPeluquero h1 {
+    text-align: center;
+    margin: 0px;
+}
+
+.main-container-infoPeluquero p{
+    margin: 0;
+    margin-top: 8px;
+    text-align: center;
+    color: #858585;
+}
+
+.main-container-listTurnos {
+    margin-top: 21px;
+}
+.main-container-listTurnos input {
+    padding: 7px;
+    border-radius: 8px;
+    border: none;
+}
+.main-container-listTurnos button {
+    text-transform: uppercase;
+    border: none;
+    background-color: #302f34;
+    color: #f7f7e9;
+    padding: 7px;
+    border-radius: 8px;
+}
+
+.container-listTurnos {
+    margin-top: 21px;
+    padding: 10px;
+}
+.container-listTurnos li {
+    background-color: #302f34;
+    color: #f7f7e9;
+    margin-top: 8px;
+    padding: 8px;
 }
