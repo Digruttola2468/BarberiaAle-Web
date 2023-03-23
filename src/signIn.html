@@ -7,7 +7,7 @@
 
     <link rel="icon" type="image/x-icon" href="assets/image/icon.ico" />
 
-    <title>Barberia Ale - Registrarse</title>
+    <title>Barberia Ale - Iniciar Sesion</title>
 
     <!-- FONTAWESOME -->
     <link
@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="./footer.css">
     <link rel="stylesheet" href="./signup.css">
 
-    <script src="./src/signUp.js" type="module"></script>  
+    <script src="./app/signIn.js" type="module"></script> 
 </head>
 <body>
     
@@ -72,18 +72,15 @@
 
       <main>
         <section class="main-container-signUp">
-            <form id="formRegistrarse">
-                <h2>Registrarse</h2>
-                <input type="text" placeholder="Nombre" id="nombre">
-                <input type="text" placeholder="Apellido" id="apellido">
+            <form id="formIniciarSesion">
+                <h2>Iniciar Sesion</h2>
                 <input type="email" placeholder="Email" id="email">
                 <input type="password" placeholder="********" id="password">
-                <input type="password" placeholder="********" id="rptPassword">
-                <button id="btnRegistrarme">Registrarme</button>
-                <p>Si ya tenes una cuenta, Inicia Sesion <a href="./signIn.html">aqui</a></p>
+                <button id="btnIniciarSesion">Iniciar Sesion</button>
+                <p>Si no tenes una cuenta, Registrarse <a href="./signup.html">aqui</a></p>
             </form>
             <div>
-                <button id="btnSignInGoole"><i class="fa-brands fa-google"></i> Registrarme con Google</button>
+                <button id="btnSignInGoole"><i class="fa-brands fa-google"></i> Iniciar Sesion con Google</button>
             </div>
         </section>
       </main>
@@ -97,10 +94,8 @@
         </section>
       </footer>
 
-
-     
-
-      <script src="./src/menu.js"></script>  
+      <script src="./app/menu.js"></script>   
+      
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>
