@@ -39,6 +39,9 @@
 #formRegistrarse p a {
     color: rgb(56, 56, 255);
 }
+#formIniciarSesion p a {
+    color: rgb(56, 56, 255);
+}
 
 #btnSignInGoole {
     background-color: #302f34;
