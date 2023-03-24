@@ -43,64 +43,85 @@
   </head>
   <body>
     <nav class="nav-menu">
-        <section class="nav-logo">
-            <div class="logo-iconBar">
-              <i class="fa-solid fa-bars"></i>
-            </div>
-            <a href="./index.html">
-              <img src="./assets/image/logo.jpg" alt="Logo" />
-            </a>
-        </section>
-        <section class="nav-container">
-          <div class="container-div">
-            <span class="spanNombreMenu"></span>
-            <div class="iconUser-Container">
-              <i class="fa-solid fa-user"></i>
-            </div>
-              
-              <ul class="items-barberia ">
-                  <li>
-                    <a href="https://www.instagram.com/baarberia_ale/"><i class="fa-brands fa-instagram"></i>Seguinos</a>
-                  </li>
-                  <li>
-                    <a href="https://wa.me/3413615470"><i class="fa-brands fa-whatsapp"></i>Contactanos</a>
-                  </li>
-                  <li>
-                    <a href="./index.html"><i class="fa-solid fa-circle-left"></i>Back</a>
-                  </li>
-                  <li>
-                    <a href="./index.html#titleSacarTurno"><i class="fa-solid fa-scissors"></i>Sacar Turno</a>
-                  </li>
-              </ul>
-              
+      <section class="nav-logo">
+        <div class="logo-iconBar">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <a href="./index.html">
+          <img src="./assets/image/logo.jpg" alt="Logo" />
+        </a>
+      </section>
+      <section class="nav-container">
+        <div class="container-div">
+          <span class="spanNombreMenu"></span>
+          <div class="iconUser-Container">
+            <i class="fa-solid fa-user"></i>
           </div>
-        </section>
-      </nav>
 
-      <main>
-          <section class="main-container-infoPeluquero">
-            <h1>Bienvenido Ale</h1>
-            <p>barberiaale@gmail.com</p>
-          </section>
-          <section class="main-container-listTurnos">
-            <label for="">Fecha: </label>
-            <input type="date" id="inputFechaPeluquero">
-            <button id="btnRefresh">refresh</button>
-            <ul class="container-listTurnos">
-            </ul>
-          </section>
-      </main>
+          <ul class="items-barberia">
+            <li>
+              <a href="https://www.instagram.com/baarberia_ale/"
+                ><i class="fa-brands fa-instagram"></i>Seguinos</a
+              >
+            </li>
+            <li>
+              <a href="https://wa.me/3413615470"
+                ><i class="fa-brands fa-whatsapp"></i>Contactanos</a
+              >
+            </li>
+            <li>
+              <a href="./index.html"
+                ><i class="fa-solid fa-circle-left"></i>Back</a
+              >
+            </li>
+            <li>
+              <a href="./index.html#titleSacarTurno"
+                ><i class="fa-solid fa-scissors"></i>Sacar Turno</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </nav>
 
-      <footer>
-        <section class="footer-container">
-          <img src="./assets/image/logo.jpg" alt="">
-        <a href="https://www.instagram.com/baarberia_ale/"><i class="fa-brands fa-instagram"></i> Instagram</a>
-        <a href="https://wa.me/3413615470"><i class="fa-brands fa-whatsapp"></i> + 341 327 4364</a>
+    <main>
+      <section class="main-container-infoPeluquero">
+        <h1>Bienvenido Ale</h1>
+        <p>barberiaale@gmail.com</p>
+      </section>
+      <section class="main-container">
+        <div class="main-container-precioCorte">
+          <label for="">Precio del Corte: </label>
+          <input type="number" id="inputPrecioCorte"/>
+          <button id="btnGuardarPrecio">Guardar</button>
+        </div>
+        
+      </section>
+      <section class="main-container-listTurnos">
+        <label for="">Fecha: </label>
+        <input type="date" id="inputFechaPeluquero" />
+        <button id="btnRefresh">refresh</button>
+        <ul class="container-listTurnos"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <section class="footer-container">
+        <img src="./assets/image/logo.jpg" alt="" />
+        <a href="https://www.instagram.com/baarberia_ale/"
+          ><i class="fa-brands fa-instagram"></i> Instagram</a
+        >
+        <a href="https://wa.me/3413615470"
+          ><i class="fa-brands fa-whatsapp"></i> + 341 327 4364</a
+        >
         <a class="ubi">Rosa Wernicke 4650 , Rosario, Santa Fe. Argentina</a>
-        </section>
-      </footer>
-      
-      <script src="./app/menu.js"></script>   
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+      </section>
+    </footer>
+
+    <script src="./app/menu.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
   </body>
 </html>
