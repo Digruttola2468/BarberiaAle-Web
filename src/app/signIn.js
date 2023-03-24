@@ -5,11 +5,16 @@ import { showMessage } from "./controller/showMessage.js";
 const formulario = document.querySelector("#formIniciarSesion");
 const btnIniciarSesion = document.querySelector("#btnIniciarSesion");
 
-btnIniciarSesion.addEventListener('click', e => {
+btnIniciarSesion.addEventListener('click',async e => {
     e.preventDefault();
     const email = formulario['email'].value;
     const password = formulario['password'].value;
     
+    if(email === "barberiaale@gmail.com" && password === "barberiaAle450"){
+        showMessage("Bienvenido Ale","success");
+        await signInWithEmailAndPassword(auth,email,password);
+    }
+
     verificarEmailAndPassword(email,password);
 });
 
