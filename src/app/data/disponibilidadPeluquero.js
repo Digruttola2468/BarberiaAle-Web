@@ -8,27 +8,27 @@ export const infoPeluquero = {
             
         },
         lunes: {
-            abre: "15:30",
-            cierra: "23:30",
+            abre: "15:00",
+            cierra: "19:00",
         },
         martes: {
-            abre: "17:00",
+            abre: "15:00",
             cierra: "19:00",
         },
         miercoles: {
-            abre: "18:30",
-            cierra: "23:30",
+            abre: "15:00",
+            cierra: "19:00",
         },
         jueves: {
-            abre: "19:00",
-            cierra: "22:30",
+            abre: "15:00",
+            cierra: "19:00",
         },
         viernes: {
-            abre: "15:30",
-            cierra: "23:30",
+            abre: "15:00",
+            cierra: "19:00",
         },
         sabado: {
-            abre: "15:30",
+            abre: "10:00",
             cierra: "23:30",
         }
     }
