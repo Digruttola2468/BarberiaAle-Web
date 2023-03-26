@@ -7,6 +7,7 @@ import { showMessage } from "./controller/showMessage.js";
 import {
   doc,
   getDoc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
 
 const NombreUserH1 = document.querySelector("#NombreUserH1");
@@ -22,6 +23,9 @@ const btnCancelar = document.querySelector("#btnDelete");
 
 btnModificar.style.display = "none";
 btnCancelar.style.display = "none";
+
+let obtenerFecha = "";
+let obtenerHorario = "";
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -44,9 +48,11 @@ onAuthStateChanged(auth, async (user) => {
           btnModificar.style.display = "block";
           btnCancelar.style.display = "block";
           FechaTurnoP.innerHTML = `<b>Fecha</b>: ${docSnap.data().turno.fecha}`;
+          obtenerFecha = docSnap.data().turno.fecha;
           HorarioTurnoP.innerHTML = `<b>Horario</b>: ${
             docSnap.data().turno.hora
           }`;
+          obtenerHorario = docSnap.data().turno.hora;
         } else {
           turnoH3User.innerHTML = "No posee Turno";
         }
@@ -67,3 +73,50 @@ btnLoginOut.addEventListener("click", async (e) => {
     }
   }
 });
+
+btnModificar.addEventListener("click", (e) => {
+  if (obtenerHorario != "" && obtenerFecha != "") {
+    if (isModifiedOrCancel(obtenerFecha, obtenerHorario)) {
+      window.location.href = "./index.html#titleSacarTurno";
+    } else showMessage("No se puede modificar");
+  }
+});
+
+btnCancelar.addEventListener("click", async (e) => {
+  if (obtenerHorario != "" && obtenerFecha != "") {
+    if (isModifiedOrCancel(obtenerFecha, obtenerHorario)) {
+      //Actualizar
+      const washingtonRef = doc(db, "usuarios", auth.currentUser.uid);
+
+      try {
+        // Set the "capital" field of the city 'DC'
+        await updateDoc(washingtonRef, {
+          turno: {
+            fecha: "",
+            hora: "",
+          },
+        });
+        window.location.reload();
+      } catch (error) {console.log(error);}
+    } else showMessage("No se puede cancelar");
+  }
+});
+
+function isModifiedOrCancel(fecha, horario) {
+  const date1 = new Date();
+  const date2 = new Date(`${fecha}T${horario}`);
+  console.log(date1, date2);
+  if (date1 > date2) {
+    //Aca ya esta obsoleto, ya paso la fecha del turno
+    //Podemos cambiar el boton por sacar un nuevo turno
+    return true;
+  } else if (date1 < date2 || date1 == date2) {
+    //Aca modificamos el turno
+    const horaActual = date1.getHours();
+    let modificado = parseInt(obtenerHorario.slice(0, 2)) - 2;
+
+    if (modificado > horaActual) {
+      return true;
+    } else return false;
+  }
+}

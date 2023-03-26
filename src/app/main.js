@@ -31,14 +31,12 @@ const descripcion = document.createElement("p");
 const clickUserIcon = document.querySelector(".iconUser-Container");
 clickUserIcon.addEventListener("click", (e) => {
   if (auth.currentUser != null) {
-    if(auth.currentUser.email === "barberiaale@gmail.com"){
+    if (auth.currentUser.email === "barberiaale@gmail.com") {
       window.location.href = "./peluquero.html";
-    }
-
-    else if (auth.currentUser.emailVerified) {
+    } else if (auth.currentUser.emailVerified) {
       window.location.href = "./user.html";
-    }else showMessage("Necesitas Verificar el Email");
-  }else showMessage("Necesitas Registrarte");
+    } else showMessage("Necesitas Verificar el Email");
+  } else showMessage("Necesitas Registrarte");
 });
 
 inputDate.setAttribute("min", getStringDate());
@@ -84,7 +82,6 @@ onAuthStateChanged(auth, async (user) => {
 inputDate.addEventListener("change", async (evt) => {
   selectTurnosButton.innerHTML = "";
   valorButon = "";
-
   const getInputDate = evt.target.value;
 
   if (!compareDates(getStringDate(), getInputDate)) {
@@ -137,13 +134,11 @@ inputDate.addEventListener("change", async (evt) => {
       }
     });*/
 
-    const q = query(
-      collection(db, "usuarios")
-    );
+    const q = query(collection(db, "usuarios"));
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      if(doc.data().turno.fecha === evt.target.value){
+      if (doc.data().turno.fecha === evt.target.value) {
         let obtenerIndex = array.indexOf(doc.data().turno.hora);
         delete array[obtenerIndex];
       }
@@ -186,22 +181,26 @@ btnConfirmar.addEventListener("click", async (e) => {
   if (auth.currentUser != null) {
     if (auth.currentUser.emailVerified) {
       if (inputDate.value != "" && valorButon != "") {
-        if (
-          confirm(
-            `El turno que elegiste es el ${inputDate.value} a las ${valorButon}, seleccione aceptar para confirmar`
-          )
-        ) {
-          const docRef = doc(db, "usuarios", `${auth.currentUser.uid}`);
-          await updateDoc(docRef, {
-            turno: {
-              fecha: `${inputDate.value}`,
-              hora: `${valorButon}`,
-            },
-          });
-          showMessage("Guardado", "success");
+        isModified().then(async (resultado) => {
+          if (resultado) {
+            if (
+              confirm(
+                `El turno que elegiste es el ${inputDate.value} a las ${valorButon}, seleccione aceptar para confirmar`
+              )
+            ) {
+              const docRef = doc(db, "usuarios", `${auth.currentUser.uid}`);
+              await updateDoc(docRef, {
+                turno: {
+                  fecha: `${inputDate.value}`,
+                  hora: `${valorButon}`,
+                },
+              });
+              showMessage("Guardado", "success");
 
-          vaciarCampos();
-        } else showMessage("Cancelado", "error");
+              vaciarCampos();
+            } else showMessage("Cancelado", "error");
+          } else showMessage("Ya tenes un turno");
+        });
       }
     } else showMessage("Necesitas Verificar el Email");
   } else showMessage("Necesitas Registrarte");
@@ -213,3 +212,35 @@ const vaciarCampos = () => {
   selectTurnosButton.innerHTML = "";
   descripcion.innerHTML = "";
 };
+
+async function isModified() {
+  if (auth.currentUser != null) {
+    const docRef = doc(db, "usuarios", auth.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+
+      let fecha = docSnap.data().turno.fecha;
+      let horario = docSnap.data().turno.hora;
+
+      if (fecha != "" && horario != "") {
+        const date1 = new Date();
+        const date2 = new Date(`${fecha}T${horario}`);
+        if (date1 > date2) {
+          //Aca ya esta obsoleto, ya paso la fecha del turno
+          //Podemos cambiar el boton por sacar un nuevo turno
+          return true;
+        } else if (date1 < date2 || date1 == date2) {
+          //Aca modificamos el turno
+          const horaActual = date1.getHours();
+          let modificado = parseInt(horario.slice(0, 2)) - 2;
+
+          if (modificado > horaActual) {
+            return true;
+          } else return false;
+        }
+      } else return true;
+    }
+  }
+}
