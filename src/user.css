@@ -6,6 +6,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 
 .main-container-user div{
@@ -54,6 +55,7 @@ main {
 }
 
 #btnLoginOut {
+    width: 200px;
     background-color: #302f34;
     color: #f7f7e9;
     border: none;

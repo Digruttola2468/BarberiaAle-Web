@@ -2,6 +2,8 @@ import { auth } from "./firebase/mainFirebase.js";
 import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  GoogleAuthProvider, 
+  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { showMessage } from "./controller/showMessage.js";
 
@@ -10,6 +12,7 @@ const btnIniciarSesion = document.querySelector("#btnIniciarSesion");
 const btnOlvidasteContraseña = document.querySelector(
   "#btnOlvidasteContraseña"
 );
+const btnSignInGoole = document.querySelector("#btnSignInGoole");
 
 btnIniciarSesion.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -112,3 +115,15 @@ btnOlvidasteContraseña.addEventListener("click", (e) => {
     }
   
 });
+
+btnSignInGoole.addEventListener('click',async e => {
+  const provider = new GoogleAuthProvider();
+  try {
+    const credentials = await signInWithPopup(auth, provider);
+
+    showMessage("Welcome " + credentials.user.displayName,"success");
+    window.location.href = "./index.html";
+  } catch (error) {
+    console.log(error);
+  }
+})

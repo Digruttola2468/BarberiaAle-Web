@@ -21,8 +21,10 @@ iframe {
     justify-content: space-between;
     height: 40vh;
     padding: 20px;
+    
+    height: 50vh;
 }
-.principal-info  a{
+.principal-info a{ 
     padding: 20px;
     color: #f7f7e9;
     background-color: #302f34;
@@ -61,6 +63,7 @@ iframe {
     grid-template-columns: repeat(auto-fit  , minmax(120px,1fr));
     gap: 10px;
     padding: 5px;
+    max-width: 500px;
 }
 
 /* TURNOS */
@@ -88,6 +91,7 @@ iframe {
 .selectTurnosButton {
     display: grid;
     grid-template-columns: repeat(auto-fit, 90px);
+    place-content: center;
 }
 
 .selectTurnosButton button {
@@ -99,7 +103,30 @@ iframe {
     border-radius: 10px;
 }
 
+#btnConfirmar {
+    margin-top: 20px;
+}
+
 .activarButton {
     background-color: #f7f7e9;
     color: #302f34;
+}
+
+@media (min-width: 510px) {
+    .main-container-follow {
+        display: grid;
+        place-content: center;
+    }
+    .follow-barber {
+        max-width: 500px;
+    }
+    .principal-info {
+        align-items: center;
+    }
+    .main-container-principal {
+        height: 90vh;
+    }
+    .principal-info a {
+        width: 320px;
+    }
 }
